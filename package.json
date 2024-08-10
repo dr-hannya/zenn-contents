@@ -1,0 +1,7 @@
+{
+  "name": "zenn-contents",
+  "private": true,
+  "dependencies": {
+    "zenn-cli": "^0.1.154"
+  }
+}
