@@ -135,13 +135,16 @@ You can:
 
 #### 5. Zsh の確認
 以下のコマンドを実行し、`/usr/bin/zsh`が表示されればZshの設定は成功です。
-```zsh
+```bash
 echo $SHELL
 ```
 
 #### 6. Oh My Zsh のインストール
+
+@[card](https://ohmyz.sh/)
+
 Oh My Zshは、Zshの設定を管理するフレームワークで、多くのプラグインやテーマを提供します。
-```zsh
+```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -150,13 +153,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 Neovimは、Vimの改良版で、より高速で拡張性に優れたテキストエディタです。
 
 #### 1. Neovim のインストール
-```zsh
+```bash
 sudo apt install neovim
 ```
 
 #### 2. Neovim をデフォルトエディタに設定
 
-```zsh
+```bash
 nvim ~/.zshrc
 ```
 
@@ -169,25 +172,25 @@ export VISUAL='nvim'
 ```
 
 #### 3. 変更の反映
-```zsh
+```bash
 source ~/.zshrc
 ```
 
 #### 4. システムのデフォルトエディタとして Neovim を設定
-```zsh
+```bash
 sudo update-alternatives --install /usr/bin/editor editor $(which nvim) 100
 ```
 
 #### 5. デフォルトエディタの確認
 以下のコマンドを実行し、出力が`nvim`になっていれば、Neovimがデフォルトエディタとして設定されています。
-```zsh
+```bash
 echo $EDITOR
 echo $VISUAL
 ```
 
 #### 6. nano のアンインストール
 Neovimを使用するため、nanoは不要になります。以下のコマンドでアンインストールします。
-```zsh
+```bash
 sudo apt remove nano
 sudo apt autoremove
 ```
@@ -195,36 +198,36 @@ sudo apt autoremove
 ### 6. Git のアップデートと設定
 
 #### 1. 既存の Git のアンインストール
-```zsh
+```bash
 sudo apt remove git
 sudo apt autoremove
 ```
 
 #### 2. 最新バージョンの Git をインストールするためのリポジトリの追加
-```zsh
+```bash
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 ```
 
 #### 3. Git のインストール
-```zsh
+```bash
 sudo apt install git
 ```
 
 #### 4. Git のバージョン確認
-```zsh
+```bash
 git --version
 ```
 
 #### 5. Git の基本設定
 ユーザー名とメールアドレスを設定します。
-```zsh
+```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
 #### 6. その他の便利な設定
-```zsh
+```bash
 # デフォルトブランチ名をmainに設定
 git config --global init.defaultBranch main
 
@@ -246,24 +249,24 @@ git config --global alias.ci commit
 SSHキーを設定することで、GitHubなどのリモートリポジトリとスマートに接続できるようになります。
 
 #### 1. SSH キーの生成
-```zsh
+```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 キーの保存場所とパスフレーズを設定します。セキュリティを高めるため、パスフレーズの設定をおすすめします。
 
 #### 2. SSH エージェントの起動
-```zsh
+```bash
 eval "$(ssh-agent -s)"
 ```
 
 #### 3. SSH キーの登録
-```zsh
+```bash
 ssh-add ~/.ssh/id_ed25519
 ```
 
 #### 4. 公開鍵のコピー
 xclipがインストールされていない場合は、先に`sudo apt install xclip`でインストールしてください。
-```zsh
+```bash
 cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
 ```
 
@@ -277,11 +280,13 @@ cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
 
 #### 6. SSH 接続のテスト
 以下のコマンドを実行し、`Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.`と表示されれば、SSH接続は成功です。
-```zsh
+```bash
 ssh -T git@github.com
 ```
 
 ### 8. Peco のインストールと設定
+
+@[card](https://github.com/peco/peco)
 
 Pecoは、インタラクティブなフィルタリングツールで、コマンド履歴の検索などに非常に便利です。
 
@@ -290,46 +295,46 @@ Pecoは、インタラクティブなフィルタリングツールで、コマ�
 
 `peco_linux_amd64.tar.gz`のアーキテクチャについては、ご自身の環境のものに適宜置き換えてください。
 
-```zsh
+```bash
 wget https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_amd64.tar.gz
 ```
 wgetがインストールされていない場合は、`sudo apt install wget`でインストールしてください。
 
 #### 2. ダウンロードしたファイルの解凍
-```zsh
+```bash
 tar -zxvf peco_linux_amd64.tar.gz
 ```
 
 #### 3. pecoバイナリファイルの移動
-```zsh
+```bash
 sudo mv peco_linux_amd64/peco /usr/local/bin/
 ```
 
 #### 4. pecoバイナリファイルに実行権限を付与
-```zsh
+```bash
 sudo chmod +x /usr/local/bin/peco
 ```
 
 #### 5. インストールしたPeco のバージョンを確認
 以下のコマンドでPecoのバージョンが表示されれば、Pecoのインストールは成功です。
-```zsh
+```bash
 peco --version
 ```
 
 #### 6. 不要なファイルを削除
 インストールに使用したファイルは不要になります。以下のコマンドで削除します。
-```zsh
+```bash
 rm -rf peco_linux_amd64 peco_linux_amd64.tar.gz
 ```
 
 #### 7. Peco の設定
 以下のコマンドで`~/.zshrc`ファイルを開きます。
-```zsh
+```bash
 nvim ~/.zshrc
 ```
 
 以下の設定を追加することで、Ctrl+Rでコマンド履歴を検索できるようにします。
-```
+```bash
 # Configure peco for interactive filtering of command history with Ctrl+R
 function peco-history-selection() {
   BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
@@ -341,3 +346,7 @@ bindkey '^R' peco-history-selection
 ```
 
 この設定により、Ctrl+Rを押すとPecoを使用してコマンド履歴を対話的に検索できるようになります。
+
+##### 参考:
+- [LinuxMintのzsh上でpecoをコマンド履歴の検索に用いる方法](https://wisdomtrees.net/?p=652)
+- [Ubuntuにpecoを導入してフィルタを素敵にする](https://qiita.com/louvre2489/items/b92dd9916dcbae787c31)
